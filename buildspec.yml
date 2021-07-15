@@ -1,0 +1,23 @@
+version: 0.1
+frontend:
+  install:
+    runtime-versions:
+        nodejs: 16
+  phases:
+    preBuild:
+      commands:
+        - |
+          echo crating aws-exports.js
+          python3 generate-aws-exports.py --env $ENV
+          npm ci
+    build:
+      commands:
+        - |
+          npm run build
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
