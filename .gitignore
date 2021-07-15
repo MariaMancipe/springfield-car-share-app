@@ -350,6 +350,7 @@ MigrationBackup/
 .ionide/
 
 #amplify
+amplify/*
 amplify/\#current-cloud-backend
 amplify/.config/local-*
 amplify/logs
