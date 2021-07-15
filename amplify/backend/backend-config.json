@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "carsharespringfieldd0a04220": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

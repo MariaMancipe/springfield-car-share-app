@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-carsharespringfield-dev-154941-authRole",
+      "UnauthRoleArn": "arn:aws:iam::286654261506:role/amplify-carsharespringfield-dev-154941-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::286654261506:role/amplify-carsharespringfield-dev-154941-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-carsharespringfield-dev-154941-deployment",
+      "UnauthRoleName": "amplify-carsharespringfield-dev-154941-unauthRole",
+      "StackName": "amplify-carsharespringfield-dev-154941",
+      "StackId": "arn:aws:cloudformation:ca-central-1:286654261506:stack/amplify-carsharespringfield-dev-154941/2f9a8ca0-e5ae-11eb-a5db-0afb9f2ea4ac",
+      "AmplifyAppId": "d2suv0gdk9krew"
+    },
+    "categories": {
+      "auth": {
+        "carsharespringfieldd0a04220": {}
+      }
+    }
+  }
+}
