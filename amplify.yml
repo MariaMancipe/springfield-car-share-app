@@ -1,18 +1,16 @@
-version: 1
-install:
-    runtime-versions:
-        nodejs: 16
-phases:
-  preBuild:
-    commands:
-      - npm ci
-  build:
-    commands:
-      - npm run build
-artifacts:
-  baseDirectory: build
-  files:
-    - '**/*'
-cache:
-  paths:
-    - node_modules/**/*
+version: 0.1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
