@@ -3,7 +3,7 @@ import React, { useState, useReducer } from 'react'
 import { Auth } from 'aws-amplify'
 
 const initialFormState = {
-  name: '', password: '', email: '', confirmationCode: ''
+  username: '', password: '', email: '', confirmationCode: '', name=''
 }
 
 function reducer(state, action) {
@@ -17,10 +17,10 @@ function reducer(state, action) {
   }
 }
 
-async function signUp({ name, password, email }, updateFormType) {
+async function signUp({ username, password, email, name }, updateFormType) {
   try {
     await Auth.signUp({
-      name, password, attributes: {email}
+      username, password, attributes: {email, name}
     })
     console.log('sign up success!')
     updateFormType('confirmSignUp')
@@ -29,9 +29,9 @@ async function signUp({ name, password, email }, updateFormType) {
   }
 }
 
-async function confirmSignUp({ email, confirmationCode }, updateFormType) {
+async function confirmSignUp({ username, confirmationCode }, updateFormType) {
   try {
-    await Auth.confirmSignUp(email, confirmationCode)
+    await Auth.confirmSignUp(username, confirmationCode)
     console.log('confirm sign up success!')
     updateFormType('signIn')
   } catch (err) {
@@ -39,9 +39,9 @@ async function confirmSignUp({ email, confirmationCode }, updateFormType) {
   }
 }
 
-async function signIn({ email, password }) {
+async function signIn({ username, password }) {
   try {
-    await Auth.signIn(email, password)
+    await Auth.signIn(username, password)
     console.log('sign in success!')
   } catch (err) {
     console.log('error signing up..', err)
@@ -88,7 +88,7 @@ export default function Form() {
       {
         formType === 'signUp' && (
           <p style={styles.footer}>
-            Already have an account? <span
+            Already have an account?<span
               style={styles.anchor}
               onClick={() => updateFormType('signIn')}
             >Sign In</span>
@@ -98,10 +98,10 @@ export default function Form() {
       {
         formType === 'signIn' && (
           <p style={styles.footer}>
-            Need an account? <span
+            Need an account?<span
               style={styles.anchor}
               onClick={() => updateFormType('signUp')}
-            >Sign Up / S'inscrire</span>
+            >Sign Up</span>
           </p>
         )
       }
@@ -117,7 +117,13 @@ function SignUp(props) {
           Create Account
       </h2>
       <input 
-        name='name'
+        name='Name'
+        onChange={e => {e.persist();props.updateFormState(e)}}
+        style={styles.input}
+        placeholder='user email'
+      />
+      <input 
+        name='username'
         onChange={e => {e.persist();props.updateFormState(e)}}
         style={styles.input}
         placeholder='user email'
@@ -137,7 +143,7 @@ function SignUp(props) {
        />
       
       <button onClick={props.signUp} style={styles.button}>
-        Sign Up
+        Sign Up 
       </button>
     </div>
   )
@@ -150,10 +156,10 @@ function SignIn(props) {
           Sign In
       </h2>
       <input 
-        name='name'
+        name='username'
         onChange={e => {e.persist();props.updateFormState(e)}}
         style={styles.input}
-        placeholder='name'
+        placeholder='username'
       />
       <input
         type='password'
