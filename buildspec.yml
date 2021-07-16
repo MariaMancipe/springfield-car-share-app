@@ -1,8 +1,5 @@
-version: 0.1
+version: 1
 frontend:
-  install:
-    runtime-versions:
-        nodejs: 14
   phases:
     preBuild:
       commands:
