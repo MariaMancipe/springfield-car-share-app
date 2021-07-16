@@ -5,7 +5,7 @@ import Form from './Form'
 import Header from './Header'
 
 import { Hub, Auth } from 'aws-amplify'
-import { FaSignOutAlt, BiData} from 'react-icons/fa'
+// import { FaSignOutAlt, BiData} from 'react-icons/fa'
 import {API} from 'aws-amplify'
 import Amplify from 'aws-amplify'
 import awsmobile from './aws-exports'

@@ -45,6 +45,7 @@ frontend:
 
           EOL
           cat aws-exports.js
+          cd
           npm ci
     build:
       commands:
