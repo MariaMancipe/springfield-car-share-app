@@ -3,7 +3,7 @@ import React, { useState, useReducer } from 'react'
 import { Auth } from 'aws-amplify'
 
 const initialFormState = {
-  username: '', password: '', email: '', confirmationCode: '', name=''
+  username: '', password: '', email: '', confirmationCode: '', name: '',
 }
 
 function reducer(state, action) {
