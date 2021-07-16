@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import './App.css'
 
+import Buttons from './Buttons';
 import Form from './Form'
 import Header from './Header'
 
