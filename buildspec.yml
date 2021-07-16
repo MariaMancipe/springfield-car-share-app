@@ -2,13 +2,45 @@ version: 0.1
 frontend:
   install:
     runtime-versions:
-        nodejs: 16
+        nodejs: 14
   phases:
     preBuild:
       commands:
         - |
           echo crating aws-exports.js
-          python3 generate-aws-exports.py --env $ENV
+          cat >images.json  <<EOL
+          const awsmobile = {
+            "aws_project_region": "${PROJECT_REGION}",
+            "aws_cognito_identity_pool_id": "${COGNITO_IDENTITY_POOL_ID}",
+            "aws_cognito_region": "${COGNITO_REGION}",
+            "aws_user_pools_id": "${USER_POOLS_ID}",
+            "aws_user_pools_web_client_id": "${USER_POOLS_CLIENT_ID}",
+            "oauth": {
+                "domain": "${OAUTH_DOMAIN}",
+                "scope": [
+                    "phone",
+                    "email",
+                    "openid",
+                    "profile",
+                    "aws.cognito.signin.user.admin"
+                ],
+                "redirectSignIn": "@redirectSignIn",
+                "redirectSignOut": "@redirectSignOut",
+                "responseType": "code"
+            },
+            "federationTarget": "COGNITO_USER_POOLS",
+            "aws_cloud_logic_custom": [
+                {
+                    "name": "@api.name",
+                    "endpoint": "@api.endpoint",
+                    "region": ${PROJECT_REGION}"
+                }
+            ]
+                
+          };
+          export default awsmobile;
+
+          EOL
           npm ci
     build:
       commands:
