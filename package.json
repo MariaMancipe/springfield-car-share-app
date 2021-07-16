@@ -11,7 +11,8 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.2",
     "@aws-amplify/ui-react": "^0.2.14",
-    "aws-amplify": "^3.0.23"
+    "aws-amplify": "^3.0.23",
+    "react-icons": "^3.6.1"
   },
   "scripts": {
     "start": "react-scripts start",
