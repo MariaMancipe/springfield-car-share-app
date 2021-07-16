@@ -74,7 +74,18 @@ function App() {
             <h4>
               Welcome {userState.user.signInUserSession.idToken.payload.email}
             </h4>
+            <button
+              style={{ ...styles.button, ...styles.signOut }}
+              onClick={signOut}
+            >
+              <FaSignOutAlt color='white' />
+              <p style={{...styles.text}}>Sign Out</p>
+            </button>
+
           </div>
+
+         
+
         )
       }
     </div>
@@ -102,6 +113,15 @@ async function checkUser(dispatch) {
     dispatch({ type: 'loaded' })
   }
 }
+
+function signOut() {
+  Auth.signOut()
+    .then(data => {
+      console.log('signed out: ', data)
+    })
+    .catch(err => console.log(err));
+}
+
 
 
 const styles = {
