@@ -8,8 +8,10 @@ frontend:
     preBuild:
       commands:
         - |
+          ls -la
           echo creating aws-exports.js
-          cat >images.json  <<EOL
+          cd src
+          cat >aws-exports.js  <<EOL
           const awsmobile = {
             "aws_project_region": "${PROJECT_REGION}",
             "aws_cognito_identity_pool_id": "${COGNITO_IDENTITY_POOL_ID}",
@@ -42,7 +44,7 @@ frontend:
           export default awsmobile;
 
           EOL
-          cat images.json
+          cat aws-exports.js
           npm ci
     build:
       commands:
