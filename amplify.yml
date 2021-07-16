@@ -8,7 +8,6 @@ frontend:
     preBuild:
       commands:
         - |
-          ls -la
           echo creating aws-exports.js
           cd src
           cat >aws-exports.js  <<EOL
@@ -45,7 +44,8 @@ frontend:
 
           EOL
           cat aws-exports.js
-          cd
+          cd ..
+          ls -la
           npm ci
     build:
       commands:
