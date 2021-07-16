@@ -3,7 +3,7 @@ frontend:
   phases:
     install:
       runtime-versions:
-        nodejs: 14
+        nodejs: 16
 
     preBuild:
       commands:
