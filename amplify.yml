@@ -35,7 +35,7 @@ frontend:
                 {
                     "name": "@api.name",
                     "endpoint": "@api.endpoint",
-                    "region": ${PROJECT_REGION}"
+                    "region": "${PROJECT_REGION}"
                 }
             ]
                 
