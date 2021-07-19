@@ -12,8 +12,8 @@ frontend:
     preBuild:
       commands:
         - |
-          echo "$AWS_REGION"
-          echo "${user_pool_id}"
+          echo $user_pool_id
+          apt install jq
           aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID" | jq .Parameter.value
           echo creating aws-exports.js
           cd src
