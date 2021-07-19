@@ -8,7 +8,7 @@ frontend:
     preBuild:
       commands:
         - |
-          aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID"
+          aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID" | jq .Parameter.value
           echo creating aws-exports.js
           cd src
           cat >aws-exports.js  <<EOL
