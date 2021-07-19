@@ -4,12 +4,15 @@ frontend:
     install:
       runtime-versions:
         nodejs: 16
-
-    preBuild:
       commands:
         - |
           yum update -y
           yum install -y jq
+
+
+    preBuild:
+      commands:
+        - |
           USER_POOL_ID=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID" | jq .Parameter.Value)
           USER_POOL_CLIENT_ID=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolClientId" | jq .Parameter.Value)
           OAUTH_DOMAIN=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/OAuthDomain" | jq .Parameter.Value)
