@@ -1,7 +1,7 @@
 version: 1
 env:
   parameter-store:
-    user_pool_id: /cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID
+    user_pool: /cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID
 
 frontend:
   phases:
@@ -16,6 +16,7 @@ frontend:
           yum install -y jq
           USER_POOL_ID=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID" | jq .Parameter.Value)
           echo $USER_POOL_ID
+          echo $user_pool
           echo creating aws-exports.js
           cd src
           cat >aws-exports.js  <<EOL
