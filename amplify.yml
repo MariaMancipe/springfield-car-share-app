@@ -1,8 +1,4 @@
 version: 1
-env:
-  parameter-store:
-    user_pool: /cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID
-
 frontend:
   phases:
     install:
@@ -14,8 +10,9 @@ frontend:
         - |
           yum update -y
           yum install -y jq
-          echo $USER_POOL_ID
-          echo $user_pool
+          USER_POOL_ID=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID" | jq .Parameter.Value)
+          USER_POOL_CLIENT_ID=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolClientId" | jq .Parameter.Value)
+          OAUTH_DOMAIN=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/OAuthDomain" | jq .Parameter.Value)
           echo creating aws-exports.js
           cd src
           cat >aws-exports.js  <<EOL
@@ -23,9 +20,9 @@ frontend:
             "aws_project_region": "$AWS_REGION",
             "aws_cognito_region": "$AWS_REGION",
             "aws_user_pools_id": $USER_POOL_ID,
-            "aws_user_pools_web_client_id": "${USER_POOLS_CLIENT_ID}",
+            "aws_user_pools_web_client_id": $USER_POOL_CLIENT_ID,
             "oauth": {
-                "domain": "${OAUTH_DOMAIN}",
+                "domain": $OAUTH_DOMAIN,
                 "scope": [
                     "phone",
                     "email",
