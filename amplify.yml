@@ -4,15 +4,12 @@ frontend:
     install:
       runtime-versions:
         nodejs: 16
-      commands:
-        - |
-          yum update -y
-          yum install -y jq
-
 
     preBuild:
       commands:
         - |
+          yum update -y
+          yum install -y jq
           USER_POOL_ID=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID" | jq .Parameter.Value)
           USER_POOL_CLIENT_ID=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolClientId" | jq .Parameter.Value)
           OAUTH_DOMAIN=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/OAuthDomain" | jq .Parameter.Value)
@@ -22,10 +19,10 @@ frontend:
           const awsmobile = {
             "aws_project_region": "$AWS_REGION",
             "aws_cognito_region": "$AWS_REGION",
-            "aws_user_pools_id": $USER_POOL_ID,
-            "aws_user_pools_web_client_id": $USER_POOL_CLIENT_ID,
+            "aws_user_pools_id": "$USER_POOL_ID",
+            "aws_user_pools_web_client_id": "$USER_POOL_CLIENT_ID",
             "oauth": {
-                "domain": $OAUTH_DOMAIN,
+                "domain": "$OAUTH_DOMAIN",
                 "scope": [
                     "phone",
                     "email",
