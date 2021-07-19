@@ -12,8 +12,9 @@ frontend:
     preBuild:
       commands:
         - |
-          echo $user_pool_id
-          apt install jq
+          yum install epel-release -y
+          yum update -y
+          yum install -y jq
           aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID" | jq .Parameter.value
           echo creating aws-exports.js
           cd src
