@@ -13,7 +13,7 @@ frontend:
       commands:
         - |
           echo "$AWS_REGION"
-          echo "$user_pool_id"
+          echo "${user_pool_id}"
           aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID" | jq .Parameter.value
           echo creating aws-exports.js
           cd src
@@ -41,7 +41,7 @@ frontend:
                 {
                     "name": "${API_NAME}",
                     "endpoint": "${API_ENDPOINT}",
-                    "region": "${PROJECT_REGION}"
+                    "region": "$AWS_REGION"
                 }
             ]
                 
