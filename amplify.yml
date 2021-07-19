@@ -8,12 +8,12 @@ frontend:
     preBuild:
       commands:
         - |
+          aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolID"
           echo creating aws-exports.js
           cd src
           cat >aws-exports.js  <<EOL
           const awsmobile = {
             "aws_project_region": "${PROJECT_REGION}",
-            "aws_cognito_identity_pool_id": "${COGNITO_IDENTITY_POOL_ID}",
             "aws_cognito_region": "${COGNITO_REGION}",
             "aws_user_pools_id": "${USER_POOLS_ID}",
             "aws_user_pools_web_client_id": "${USER_POOLS_CLIENT_ID}",
