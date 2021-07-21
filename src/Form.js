@@ -120,7 +120,7 @@ function SignUp(props) {
         name='Name'
         onChange={e => {e.persist();props.updateFormState(e)}}
         style={styles.input}
-        placeholder='user email'
+        placeholder='Name'
       />
       <input 
         name='username'
