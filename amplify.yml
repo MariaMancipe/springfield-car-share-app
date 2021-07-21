@@ -14,6 +14,8 @@ frontend:
           USER_POOL_CLIENT_ID=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/UserPoolClientId" | jq .Parameter.Value)
           OAUTH_DOMAIN=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/OAuthDomain" | jq .Parameter.Value)
           WEB_APP_DOMAIN=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Amplify/WebAppMasterDomain" | jq .Parameter.Value)
+          WEB_APP_DOMAIN_LOGOUT=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Amplify/WebAppMasterLogoutDomain" | jq .Parameter.Value)
+
           echo creating aws-exports.js
           cd src
           cat >aws-exports.js  <<EOL
@@ -32,7 +34,7 @@ frontend:
                     "aws.cognito.signin.user.admin"
                 ],
                 "redirectSignIn": $WEB_APP_DOMAIN,
-                "redirectSignOut": "$WEB_APP_DOMAIN/logout",
+                "redirectSignOut": $WEB_APP_DOMAIN_LOGOUT,
                 "responseType": "code"
             },
             "federationTarget": "COGNITO_USER_POOLS",
