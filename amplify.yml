@@ -32,7 +32,7 @@ frontend:
                     "aws.cognito.signin.user.admin"
                 ],
                 "redirectSignIn": $WEB_APP_DOMAIN,
-                "redirectSignOut": $WEB_APP_DOMAIN,
+                "redirectSignOut": "${WEB_APP_DOMAIN}/logout",
                 "responseType": "code"
             },
             "federationTarget": "COGNITO_USER_POOLS",
