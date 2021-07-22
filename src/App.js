@@ -50,6 +50,22 @@ function App() {
       )
   }
 
+  async function callApi(){
+    const user = await Auth.currentAuthenticatedUser()
+    //console.log(user)
+    const token = user.signInUserSession.idToken.jwtToken
+    const access_token = user.signInUserSession.accessToken.jwtToken
+    console.log("identity token:")
+    console.log({token})
+    console.log("access token:")
+    console.log({access_token})
+    const requestInfo = {
+      headers: {Authorization: token}
+    }
+    const data = await API.get('car-share','/journeys',requestInfo)
+  }
+
+
 
   return (
     <div style={styles.appContainer}>
@@ -76,8 +92,15 @@ function App() {
             </h4>
             <button
               style={{ ...styles.button, ...styles.signOut }}
-              onClick={signOut}
-            >
+              onClick={callApi}>
+              <FaSignOutAlt color='white' />
+              <p style={{...styles.text}}>Get journeys</p>
+            </button>
+
+            <button
+              style={{ ...styles.button, ...styles.signOut }}
+              onClick={signOut}>
+
               <FaSignOutAlt color='white' />
               <p style={{...styles.text}}>Sign Out</p>
             </button>
