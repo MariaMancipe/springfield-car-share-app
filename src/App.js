@@ -12,6 +12,7 @@ import Amplify from 'aws-amplify'
 import awsmobile from './aws-exports'
 
 Amplify.configure(awsmobile);
+API.configure(awsmobile);
 
 const initialUserState = { user: null, loading: true }
 
