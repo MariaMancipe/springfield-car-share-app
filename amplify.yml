@@ -15,6 +15,7 @@ frontend:
           OAUTH_DOMAIN=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Cognito/OAuthDomain" | jq .Parameter.Value)
           WEB_APP_DOMAIN=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Amplify/WebAppMasterDomain" | jq .Parameter.Value)
           WEB_APP_DOMAIN_LOGOUT=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/Amplify/WebAppMasterLogoutDomain" | jq .Parameter.Value)
+          API_ENDPOINT=$(aws --region=ca-central-1 ssm get-parameter --name "/cloudformation/SpringfieldMunicipality/CarShare/API/InvokeURL" | jq .Parameter.Value)
 
           echo creating aws-exports.js
           cd src
@@ -41,7 +42,7 @@ frontend:
             "aws_cloud_logic_custom": [
                 {
                     "name": "${API_NAME}",
-                    "endpoint": "${API_ENDPOINT}",
+                    "endpoint": $API_ENDPOINT,
                     "region": "$AWS_REGION"
                 }
             ]
