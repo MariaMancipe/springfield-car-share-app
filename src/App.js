@@ -166,6 +166,8 @@ async function checkUser(dispatch) {
   try {
     const user = await Auth.currentAuthenticatedUser()
     console.log('user: ', user)
+    const info = await Auth.currentUserInfo()
+    console.log(info)
     dispatch({ type: 'setUser', user })
   } catch (err) {
     console.log('err: ', err)
