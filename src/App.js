@@ -119,7 +119,7 @@ function App() {
               style={{ ...styles.button, ...styles.signOut }}
               onClick={getUserJourneys}>
               <FaSignOutAlt color='white' />
-              <p style={{...styles.text}}>User journeys</p>
+              <p style={{...styles.text}}>My journeys</p>
             </button>
 
             <button

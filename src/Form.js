@@ -53,6 +53,13 @@ export default function Form() {
   const [formState, updateFormState] = useReducer(reducer, initialFormState)
   function renderForm() {
     switch(formType) {
+      case 'signIn':
+        return (
+          <SignIn
+            signIn={() => signIn(formState)}
+            updateFormState={e => updateFormState({ type: 'updateFormState', e })}
+          />
+        )
       case 'signUp':
         return (
           <SignUp
@@ -64,13 +71,6 @@ export default function Form() {
         return (
           <ConfirmSignUp
             confirmSignUp={() => confirmSignUp(formState, updateFormType)}
-            updateFormState={e => updateFormState({ type: 'updateFormState', e })}
-          />
-        )
-      case 'signIn':
-        return (
-          <SignIn
-            signIn={() => signIn(formState)}
             updateFormState={e => updateFormState({ type: 'updateFormState', e })}
           />
         )
