@@ -25,6 +25,7 @@ function App() {
   const [formState, updateFormState] = useState('base')
   const [allJourneys,setAllJourneys]=useState([]);
   const [userJourneys,setUserJourneys]=useState([]);
+  const [weather,setWeather]=userState({})
   
   useEffect(() => {
     // set listener for auth events
@@ -91,7 +92,8 @@ function App() {
   }
 
   async function getWeatherInformation(){
-    const data = await API.get('car-share','/third-party/points/39.7456,-97.0892')
+    var response = await API.get('car-share','/gridpoints/LWX/96,70/forecast')
+    setWeather(response.properties.periods[0])
     console.log(data)
   }
 
@@ -152,6 +154,15 @@ function App() {
               <FaSignOutAlt color='white' />
               <p style={{...styles.text}}>Weather Integration</p>
             </button>
+            {
+              weather && weather.number(
+                <div style={styles.body}>
+                  <p>Temperature: {weather.temperature} {weather.temperatureUnit}</p>
+                  <p>Wind Speed: {weather.windSpeed}</p>
+                  <p>{weather.detailedForecast}</p>
+                </div>
+              )
+            }
 
             <button
               style={{ ...styles.button, ...styles.signOut }}
