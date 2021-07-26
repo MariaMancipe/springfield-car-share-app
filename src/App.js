@@ -84,6 +84,11 @@ function App() {
     console.log(data)
   }
 
+  async function getWeatherInformation(){
+    const data = await API.get('car-share','/third-party/points/39.7456,-97.0892')
+    console.log(data)
+  }
+
 
 
   return (
@@ -118,6 +123,12 @@ function App() {
             <button
               style={{ ...styles.button, ...styles.signOut }}
               onClick={getUserJourneys}>
+              <FaSignOutAlt color='white' />
+              <p style={{...styles.text}}>My journeys</p>
+            </button>
+            <button
+              style={{ ...styles.button, ...styles.signOut }}
+              onClick={getWeatherInformation}>
               <FaSignOutAlt color='white' />
               <p style={{...styles.text}}>My journeys</p>
             </button>
