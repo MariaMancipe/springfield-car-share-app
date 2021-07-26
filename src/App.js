@@ -21,7 +21,6 @@ function App() {
 
   const [userState, dispatch] = useReducer(reducer, initialUserState)
   const [formState, updateFormState] = useState('base')
-  const data = {}
   
   useEffect(() => {
     // set listener for auth events
@@ -116,14 +115,6 @@ function App() {
               <FaSignOutAlt color='white' />
               <p style={{...styles.text}}>All journeys</p>
             </button>
-            {
-              userState.user && userState.user.signInUserSession && data && (
-                <div>
-                  {data.map(data => <div>{data.journey_id}</div>)}
-                </div>
-              )
-            }
-            
 
             <button
               style={{ ...styles.button, ...styles.signOut }}
