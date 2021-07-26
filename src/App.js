@@ -23,6 +23,7 @@ function App() {
 
   const [userState, dispatch] = useReducer(reducer, initialUserState)
   const [formState, updateFormState] = useState('base')
+  const [data,setData]=useState([]);
   
   useEffect(() => {
     // set listener for auth events
@@ -67,7 +68,8 @@ function App() {
     const requestInfo = {
       headers: {Authorization: token}
     }
-    const data = await API.get('car-share','/car-share/journeys',requestInfo)
+    var response = await API.get('car-share','/car-share/journeys',requestInfo)
+    setData(response)
     console.log(data)
   }
 
@@ -124,6 +126,9 @@ function App() {
               <FaSignOutAlt color='white' />
               <p style={{...styles.text}}>All journeys</p>
             </button>
+            {
+              data && data.length>0 && data.map((item)=><p>{item.origin_address}</p>)
+            }
             <button
               style={{ ...styles.button, ...styles.signOut }}
               onClick={getUserJourneys}>
