@@ -51,7 +51,7 @@ function App() {
       )
   }
 
-  async function callApi(){
+  async function getAllJourneys(){
     const user = await Auth.currentAuthenticatedUser()
     //console.log(user)
     const token = user.signInUserSession.idToken.jwtToken
@@ -60,6 +60,22 @@ function App() {
     console.log({token})
     console.log("access token:")
     console.log({access_token})
+    const requestInfo = {
+      headers: {Authorization: token}
+    }
+    const data = await API.get('car-share','/journeys',requestInfo)
+  }
+
+  async function getUserJourneys(){
+    const user = await Auth.currentAuthenticatedUser()
+    //console.log(user)
+    const token = user.signInUserSession.idToken.jwtToken
+    const access_token = user.signInUserSession.accessToken.jwtToken
+    console.log("identity token:")
+    console.log({token})
+    console.log("access token:")
+    console.log({access_token})
+    const username = user.username
     const requestInfo = {
       headers: {Authorization: token}
     }
@@ -93,10 +109,19 @@ function App() {
             </h4>
             <button
               style={{ ...styles.button, ...styles.signOut }}
-              onClick={callApi}>
+              onClick={getAllJourneys}>
               <FaSignOutAlt color='white' />
-              <p style={{...styles.text}}>Get journeys</p>
+              <p style={{...styles.text}}>All journeys</p>
             </button>
+            {
+              userState.user && userState.user.signInUserSession && (
+                <h4>{data}</h4>
+                
+       
+              )
+
+            }
+            
 
             <button
               style={{ ...styles.button, ...styles.signOut }}
