@@ -117,7 +117,9 @@ function App() {
             </button>
             {
               userState.user && userState.user.signInUserSession && data && (
-                {data.map(data => <div>{data.journey_id}</div>)}
+                <div>
+                  {data.map(data => <div>{data.journey_id}</div>)}
+                </div>
               )
             }
             
