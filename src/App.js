@@ -63,7 +63,7 @@ function App() {
     const requestInfo = {
       headers: {Authorization: token}
     }
-    const data = await API.get('car-share','/journeys',requestInfo)
+    const data = await API.get('car-share','/car-share/journeys',requestInfo)
     console.log(data)
   }
 
@@ -80,7 +80,7 @@ function App() {
     const requestInfo = {
       headers: {Authorization: token}
     }
-    const data = await API.get('car-share','/journeys',requestInfo)
+    const data = await API.get('car-share',`/car-share/journeys/${username}`,requestInfo)
     console.log(data)
   }
 
@@ -114,6 +114,12 @@ function App() {
               onClick={getAllJourneys}>
               <FaSignOutAlt color='white' />
               <p style={{...styles.text}}>All journeys</p>
+            </button>
+            <button
+              style={{ ...styles.button, ...styles.signOut }}
+              onClick={getUserJourneys}>
+              <FaSignOutAlt color='white' />
+              <p style={{...styles.text}}>User journeys</p>
             </button>
 
             <button
