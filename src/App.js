@@ -25,7 +25,7 @@ function App() {
   const [formState, updateFormState] = useState('base')
   const [allJourneys,setAllJourneys]=useState([]);
   const [userJourneys,setUserJourneys]=useState([]);
-  const [weather,setWeather]=userState({})
+  const [weather,setWeather]=useState({});
   
   useEffect(() => {
     // set listener for auth events
