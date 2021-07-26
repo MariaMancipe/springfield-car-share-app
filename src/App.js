@@ -92,7 +92,7 @@ function App() {
   }
 
   async function getWeatherInformation(){
-    var response = await API.get('car-share','/gridpoints/LWX/96,70/forecast')
+    var response = await API.get('car-share','/third-party/gridpoints/LWX/96,70/forecast')
     setWeather(response.properties.periods[0])
     console.log(response)
   }
