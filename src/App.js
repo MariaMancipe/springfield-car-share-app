@@ -21,6 +21,7 @@ function App() {
 
   const [userState, dispatch] = useReducer(reducer, initialUserState)
   const [formState, updateFormState] = useState('base')
+  const data = {}
   
   useEffect(() => {
     // set listener for auth events
