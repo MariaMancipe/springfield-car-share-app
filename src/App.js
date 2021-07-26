@@ -11,6 +11,8 @@ import {API} from 'aws-amplify'
 import Amplify from 'aws-amplify'
 import awsmobile from './aws-exports'
 
+import jwt from 'jwt-decode'
+
 Amplify.configure(awsmobile);
 API.configure(awsmobile);
 
@@ -60,6 +62,8 @@ function App() {
     console.log({token})
     console.log("access token:")
     console.log({access_token})
+    const token_info = jwt(token);
+    console.log(token_info)
     const requestInfo = {
       headers: {Authorization: token}
     }
