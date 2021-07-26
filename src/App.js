@@ -155,7 +155,7 @@ function App() {
               <p style={{...styles.text}}>Weather Integration</p>
             </button>
             {
-              weather && weather.number(
+              weather && weather.number && (
                 <div style={styles.body}>
                   <p>Temperature: {weather.temperature} {weather.temperatureUnit}</p>
                   <p>Wind Speed: {weather.windSpeed}</p>
