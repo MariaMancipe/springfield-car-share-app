@@ -23,7 +23,8 @@ function App() {
 
   const [userState, dispatch] = useReducer(reducer, initialUserState)
   const [formState, updateFormState] = useState('base')
-  const [data,setData]=useState([]);
+  const [allJourneys,setAllJourneys]=useState([]);
+  const [userJourneys,setUserJourneys]=useState([]);
   
   useEffect(() => {
     // set listener for auth events
@@ -69,8 +70,7 @@ function App() {
       headers: {Authorization: token}
     }
     var response = await API.get('car-share','/car-share/journeys',requestInfo)
-    setData(response)
-    console.log(data)
+    setAllJourneys(response)
   }
 
   async function getUserJourneys(){
@@ -86,8 +86,8 @@ function App() {
     const requestInfo = {
       headers: {Authorization: token}
     }
-    const data = await API.get('car-share',`/car-share/journeys/${username}`,requestInfo)
-    console.log(data)
+    var response = await API.get('car-share',`/car-share/journeys/${username}`,requestInfo)
+    setUserJourneys(response)
   }
 
   async function getWeatherInformation(){
@@ -127,7 +127,11 @@ function App() {
               <p style={{...styles.text}}>All journeys</p>
             </button>
             {
-              data && data.length>0 && data.map((item)=><p>{item.origin_address}</p>)
+              allJourneys && allJourneys.length>0 && allJourneys.map(
+                (item)=><p>
+                    UserId: {item.user_id} Origin Address: {item.origin_address} Destination Address: {item.destination_address}
+                  </p>
+              )
             }
             <button
               style={{ ...styles.button, ...styles.signOut }}
@@ -135,6 +139,13 @@ function App() {
               <FaSignOutAlt color='white' />
               <p style={{...styles.text}}>My journeys</p>
             </button>
+            {
+              userJourneys && userJourneys.length>0 && userJourneys.map(
+                (item)=><p> 
+                  UserId: {item.user_id} Origin Address: {item.origin_address} Destination Address: {item.destination_address}
+                  </p>
+              )
+            }
             <button
               style={{ ...styles.button, ...styles.signOut }}
               onClick={getWeatherInformation}>
