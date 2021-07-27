@@ -156,7 +156,7 @@ function App() {
             </button>
             {
               weather && weather.number && (
-                <div style={styles.body}>
+                <div>
                   <p>Temperature: {weather.temperature} {weather.temperatureUnit}</p>
                   <p>Wind Speed: {weather.windSpeed}</p>
                   <p>{weather.detailedForecast}</p>
