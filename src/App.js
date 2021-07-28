@@ -68,7 +68,7 @@ function App() {
     const token_info = jwt(token);
     console.log(token_info)
     const requestInfo = {
-      headers: {Authorization: token}
+      headers: { Authorization: `Bearer ${token}` }
     }
     var response = await API.get('car-share','/journeys',requestInfo)
     setAllJourneys(response)
