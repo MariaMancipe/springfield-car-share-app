@@ -70,7 +70,7 @@ function App() {
     const requestInfo = {
       headers: {Authorization: token}
     }
-    var response = await API.get('car-share','/journeys')
+    var response = await API.get('car-share','/journeys',requestInfo)
     setAllJourneys(response)
   }
 
