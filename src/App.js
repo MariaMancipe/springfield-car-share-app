@@ -67,9 +67,8 @@ function App() {
     console.log({access_token})
     const token_info = jwt(token);
     console.log(token_info)
-    const requestInfo = {
-      headers: { Authorization: `Bearer ${token}` }
-    }
+    const requestInfo = {headers:{Authorization:token}}
+    
     var response = await API.get('car-share','/journeys',requestInfo)
     setAllJourneys(response)
   }
@@ -84,9 +83,7 @@ function App() {
     console.log("access token:")
     console.log({access_token})
     const username = user.username
-    const requestInfo = {
-      headers: {Authorization: token}
-    }
+    const requestInfo = {headers:{Authorization:token}}
     var response = await API.get('car-share',`/journeys/${username}`,requestInfo)
     setUserJourneys(response)
   }
